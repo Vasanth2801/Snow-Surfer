@@ -7,15 +7,20 @@ public class Player : MonoBehaviour
     [SerializeField] float baseSpeed = 20f;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] SurfaceEffector2D surfaceEffector2D;
-    bool canMove = true;
+    [SerializeField] bool canMove = true;
 
     void Update()
     {
-        if (canMove)
+        if (canMove == true)
         {
             RotatePlayer();
             RespondToBoost();
         }
+    }
+
+    public void DisableControls()
+    {
+        canMove = false;
     }
 
     void RespondToBoost()
