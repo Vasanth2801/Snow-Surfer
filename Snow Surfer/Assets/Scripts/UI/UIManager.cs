@@ -1,0 +1,26 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class UIManager : MonoBehaviour
+{
+    public static UIManager Instance;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1f; // Ensure time scale is reset when restarting
+    }
+}

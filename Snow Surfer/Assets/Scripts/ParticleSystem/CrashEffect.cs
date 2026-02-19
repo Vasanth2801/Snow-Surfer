@@ -10,6 +10,7 @@ public class CrashEffect : MonoBehaviour
     [Header("Reference")]
     [SerializeField] private Player player;
     [SerializeField] private AudioClip crashSFX;
+    [SerializeField] private GameObject gameOverPanel;
 
     [Header("Delay Settings")]
     [SerializeField] private float delayBeforeRestart = 0.5f;
@@ -22,13 +23,9 @@ public class CrashEffect : MonoBehaviour
             crashParticleSystem.Play();
             player.DisableControls();
             GetComponent<AudioSource>().PlayOneShot(crashSFX);
-            Invoke("RestartLevel", delayBeforeRestart);
+            gameOverPanel.SetActive(true);
+            Time.timeScale = 0f;
             Debug.Log("Player has crashed!");
         }
-    }
-
-    void RestartLevel()
-    {
-        SceneManager.LoadScene(0);
     }
 }
